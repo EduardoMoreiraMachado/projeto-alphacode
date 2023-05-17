@@ -11,7 +11,7 @@ A aplicação foi feita seguindo a arquitetura MVC (model, view e controller), c
 - Inserção de contatos: É possível inserir registros de dados para um contato.
 - Listagem de contaos: Em uma tabela é possível ver os contatos já cadastrados.
 - Atualização de contatos: Todos os registros inseridos são possíveis serem editados.
-- Exlusão de contatos: Um contato pode ser apagado da lista.
+- Exclusão de contatos: Um contato pode ser apagado da lista.
 
 ## Pré-requisitos
 
