@@ -39,3 +39,15 @@ Download das pastas de forma compactada:
     - $dbPassword (senha)
     - $dbName (nome do banco de dados)
 - Após a criação do banco de dados com a tabela e configuração de conexão, executar o arquivo "index.php" presente na pasta "view", dentri da raíz do projeto.
+
+## Obervações
+
+- Caso não esteja realizando a conexão com o servidor apache através do "localhost", talvez seja necessário mudar o caminho dos fetchs no arquivo "contact.js" presente na pasta "js", contido na pasta "public" da pasta "view" na raíz do projeto para fazer o contato com a controller com o ip desejado. Exemplo:
+    - fetch(`http://SEU_ENDEREÇO_IP/projeto-alphacode/app/controller/contactController.php/?id=${formData.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+
