@@ -18,10 +18,10 @@ $(document).ready(function() {
     if (fullName === '' || email === '' || birthDate === '' || cellPhone === '') {
       // Exibe uma mensagem de erro
       $('#alert-message').text('Preencha os campos obrigatórios.').show();
-      // Opcionalmente, recarrega a página após 5 segundos
+      // Recarrega a página após 2 segundos
       setTimeout(function() {
         location.reload();
-      }, 3000);
+      }, 2000);
     } else {
     // Prepara os dados para envio
     var formData = {
@@ -126,10 +126,10 @@ $(document).ready(function() {
     // Exibe a mensagem
     messageElement.show();
 
-    // Define um tempo limite de 5 segundos para a mensagem desaparecer
+    // Define um tempo limite de 2 segundos para a mensagem desaparecer
     setTimeout(function() {
       messageElement.hide();
-    }, 3000);
+    }, 2000);
   }
 
   // Função para enviar os dados do formulário via AJAX usando fetch
@@ -152,10 +152,10 @@ $(document).ready(function() {
           // Armazena a mensagem de sucesso no localStorage
           localStorage.setItem('successMessage', 'Contato cadastrado com sucesso!');
   
-          // Recarrega a página após 3 segundos
+          // Recarrega a página após 2 segundos
           setTimeout(function() {
             location.reload();
-          }, 3000);
+          }, 2000);
         } else {
           // Exibe uma mensagem de erro
           showMessage('Erro ao cadastrar contato.', 'error');
@@ -163,10 +163,10 @@ $(document).ready(function() {
           // Armazena a mensagem de erro no localStorage
           localStorage.setItem('errorMessage', 'Erro ao cadastrar contato.');
   
-          // Opcionalmente, recarrega a página após 3 segundos
+          // Recarrega a página após 2 segundos
           setTimeout(function() {
             location.reload();
-          }, 3000);
+          }, 2000);
         }
       })
       .catch(function(error) {
@@ -176,10 +176,10 @@ $(document).ready(function() {
         // Armazena a mensagem de erro no localStorage
         localStorage.setItem('errorMessage', 'Erro ao cadastrar contato.');
   
-        // Opcionalmente, recarrega a página após 3 segundos
+        // Recarrega a página após 2 segundos
         setTimeout(function() {
           location.reload();
-        }, 3000);
+        }, 2000);
     });
   }
 
@@ -205,11 +205,11 @@ $(document).ready(function() {
         data.forEach(function(contact) {
           var row = document.createElement('tr');
           row.innerHTML = `
-            <td>${contact.name}</td>
-            <td>${contact.birth_date}</td>
-            <td>${contact.email}</td>
-            <td>${contact.cell_phone}</td>
-            <td>
+            <td style="text-align: center;">${contact.name}</td>
+            <td style="text-align: center;">${contact.birth_date}</td>
+            <td style="text-align: center;">${contact.email}</td>
+            <td style="text-align: center;">${contact.cell_phone}</td>
+            <td style="text-align: center;">
               <a href="#" class="get-contact mx-3" data-contact-id="${contact.id}"><img src="./public/imgs/editar.png" alt="Editar dados"/></a>
               <a href="#" class="delete-contact mx-3" data-contact-id="${contact.id}"><img src="./public/imgs/excluir.png" alt="Excluir dados"/></a>
             </td>
@@ -400,10 +400,10 @@ function sendUpdateData(formData) {
         // Armazena a mensagem de erro no localStorage
         localStorage.setItem('errorMessage', 'Erro ao atualizar dados.');
       }
-      // Recarrega a página após um pequeno atraso (5 segundos)
+      // Recarrega a página após 2 segundos
       setTimeout(function() {
         location.reload();
-      }, 5000);
+      }, 2000);
     })
     .catch(function(error) {
       console.error('Erro ao atualizar o contato:', error);
@@ -413,10 +413,10 @@ function sendUpdateData(formData) {
       // Armazena a mensagem de erro no localStorage
       localStorage.setItem('errorMessage', 'Erro ao atualizar dados.');
 
-      // Recarrega a página após um pequeno atraso (5 segundos)
-      setTimeout(function() {
+        // Recarrega a página após 2 segundos
+        setTimeout(function() {
         location.reload();
-      }, 5000);
+      }, 2000);
     });
 }
   // Função para lidar com o evento de exclusão de contato

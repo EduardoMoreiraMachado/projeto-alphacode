@@ -23,8 +23,8 @@
         </nav>
     </header>
     <main>
-        <form action="../controller/contactController.php" method="POST" id="contact-form">
-            <div class="d-flex justify-content-evenly mt-5">
+        <form action="../controller/contactController.php" method="POST" id="contact-form" class="mt-5 mx-5">
+            <div class="d-flex justify-content-center">
                 <div class="row">
                     <div class="col">
                         <div class="input-container d-flex flex-column gap-1 mb-5">
@@ -38,6 +38,18 @@
                         <div class="input-container d-flex flex-column gap-1 mb-5">
                             <label for="phone" class="input-label">Telefone para contato</label>
                             <input name="phone" id="phone" type='tel' class="data-input" placeholder="Ex.: (11) 4033-2019">
+                        </div>
+                        <div class="form-check mb-4">
+                            <input name="check-wpp" id="check-wpp" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Número de celular possui Whatsapp
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input name="check-sms" id="check-sms" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Enviar notificações por SMS
+                            </label>
                         </div>
                     </div>
                     <div class="col">
@@ -53,26 +65,6 @@
                             <label for="cell-phone" class="input-label">Celular para contato</label>
                             <input name="cell-phone" id="cell-phone" type='tel' class="data-input" placeholder="Ex.: (11) 98493-2039">
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="d-flex justify-content-evenly mb-5">
-                <div class="row">
-                    <div class="col">
-                        <div class="form-check">
-                            <input name="check-wpp" id="check-wpp" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Número de celular possui Whatsapp
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input name="check-sms" id="check-sms" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Enviar notificações por SMS
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col">
                         <div class="form-check">
                             <input name="check-email" id="check-email" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
@@ -90,7 +82,7 @@
             <div id="alert-message" class="alert alert-warning" role="alert" style="display: none;"></div>
 
             <div class="d-flex justify-content-end mb-5">
-                <button type="submit" class="btn text-white" id="blue" name="submit" value="Enviar">Cadastrar contato</button>
+                <button type="submit" class="btn text-white mx-5" id="blue" name="submit" value="Enviar">Cadastrar contato</button>
             </div>
         </form>
         <div class="border-top border-2 black-light mb-5"></div>
@@ -112,29 +104,31 @@
                 </div>
             </div>
         </div>
-        <table class="table mb-5">
-            <thead class="color-main">
-                <tr>
-                    <th scope="col">
-                        <span class="text-white">Nome</span>
-                    </th>
-                    <th scope="col">
-                        <span class="text-white">Data de nascimento</span>
-                    </th>
-                    <th scope="col">
-                        <span class="text-white">E-mail</span>
-                    </th>
-                    <th scope="col">
-                        <span class="text-white">Celular para contato</span>
-                    </th>
-                    <th scope="col">
-                        <span class="text-white">Ações</span>
-                    </th>
-                </tr>
-            </thead>
-            <tbody id="contact-table">
-            </tbody>
-        </table>
+        <div class="mx-5">
+            <table class="table mb-5 custom-border">
+                <thead class="color-main">
+                    <tr>
+                        <th scope="col" class="text-center">
+                            <span class="text-white">Nome</span>
+                        </th>
+                        <th scope="col" class="text-center">
+                            <span class="text-white">Data de nascimento</span>
+                        </th>
+                        <th scope="col" class="text-center">
+                            <span class="text-white">E-mail</span>
+                        </th>
+                        <th scope="col" class="text-center">
+                            <span class="text-white">Celular para contato</span>
+                        </th>
+                        <th scope="col" class="text-center">
+                            <span class="text-white">Ações</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="contact-table">
+                </tbody>
+            </table>
+        </div>
     </main>
     <footer class="d-flex justify-content-between align-items-center color-main py-3 px-4">
         <span class="text-white fs-6">Termos | Políticas</span>
