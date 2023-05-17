@@ -22,13 +22,13 @@ A aplicação foi feita seguindo a arquitetura MVC (model, view e controller), c
 
 Para extrair os arquivos do projeto através do comando Git:
 
-1. Passo 1: Abrir o terminal do sistema operacional.
-2. Passo 2: Digitar "git clone https://github.com/EduardoMoreiraMachado/projeto-alphacode".
+1: Abrir o terminal do sistema operacional.
+2: Digitar "git clone https://github.com/EduardoMoreiraMachado/projeto-alphacode".
 
 Download das pastas de forma compactada:
 
-1: Passo 1: Clicar no botão "<> Code ▾"
-2: Passo 2: Clicar na opção "Download ZIP"
+1: Clicar no botão "<> Code ▾"
+2: Clicar na opção "Download ZIP"
 
 ## Uso
 
