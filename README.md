@@ -4,7 +4,7 @@ Página web que permite a inserção, listagem, atualização e exclusão de con
 
 ## Descrição
 
-A aplicação foi feita seguindo a arquitetura MVC (model, controller e view), com o back-end sendo feito através da linguagem PHP e o front-end, com as linguagens HTML, CSS e JavaScript.
+A aplicação foi feita seguindo a arquitetura MVC (model, view e controller), com o back-end sendo feito através da linguagem PHP e o front-end, com as linguagens HTML, CSS e JavaScript.
 
 ## Funcionalidades
 
