@@ -10,15 +10,13 @@
              // Verificação de conexão com o banco de dados
             if ($this->db) {
                 return "Conexão com o banco de dados estabelecida com sucesso!";
-                // Ou realizar alguma outra ação que desejar
             } else {
                 return "Falha na conexão com o banco de dados!";
-                // Ou tratar o erro de conexão de alguma outra forma
             }
         }
 
         public function insertContact($name, $email, $phone, $birth, $work, $cell, $checkWpp, $checkSms, $checkEmail) {
-            // script para inserir os dados no banco de dados
+            // Script para inserir os dados no banco de dados
             $sql = "insert into tbl_contact (name, email, phone, birth_date, work, cell_phone, enabled_wpp, enabled_sms, enabled_email)
                     values ('$name', '$email', '$phone', '$birth', '$work', '$cell', $checkWpp, $checkSms, $checkEmail)";
 
@@ -41,7 +39,7 @@
         
                 return $contacts;
             } catch (Exception $ex) {
-                echo "Error retrieving contacts: " . $ex->getMessage();
+                echo "Erro ao receber os contatos: " . $ex->getMessage();
             }
         }
 
@@ -59,7 +57,7 @@
         
                 return $contacts;
             } catch (Exception $ex) {
-                echo "Error retrieving contacts: " . $ex->getMessage();
+                echo "Erro ao receber o contato: " . $ex->getMessage();
             }
         }
 
@@ -84,16 +82,13 @@
         }
 
         public function deleteContact($id) {
-            echo 'ESSE AQUI É O ID MANO================================>' . $id;
-
             try {
                 $query = "delete from tbl_contact where id = $id";
                 $stmt = $this->db->prepare($query);
-                // $stmt->bindParam(':id', $id);
                 $stmt->execute();
 
             } catch (Exception $ex) {
-                echo "Error deleting contact: " . $ex->getMessage();
+                echo "Erro ao deletar o contato: " . $ex->getMessage();
             }
         }
 

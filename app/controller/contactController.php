@@ -16,13 +16,13 @@
             $requestMethod = $_SERVER['REQUEST_METHOD'];
 
             if ($requestMethod === 'POST') {
-                // A requisição é do tipo POST, então processamos os dados do formulário
+                // Processamento de dados do formulário
                 $postData = file_get_contents('php://input');
                 $formData = json_decode($postData, true);
 
                 // Verifica se os dados do formulário foram recebidos
                 if (!empty($formData)) {
-                    // Recupera os dados do formulário
+                    // Pega os dados do formulário
                     $name = $formData['fullName'];
                     $email = $formData['email'];
                     $phone = $formData['phone'];
@@ -65,7 +65,7 @@
                     // Retorna os contatos como resposta
                     echo json_encode($contacts);
                 } else {
-                    // A requisição é do tipo GET, então obtemos todos os contatos
+                    // Obtém todos os contaotos
                     $contacts = $this->model->getAllContacts();
         
                     // Retorna os contatos como resposta
@@ -73,14 +73,14 @@
                 }
 
             } else if ($requestMethod === 'PUT') {
-                // A requisição é do tipo PUT, então processamos os dados de atualização do contato
+                // Processamento de dados de atualização do contato
                 $postData = file_get_contents('php://input');
                 $formData = json_decode($postData, true);
                 $contactId = $_GET['id'];
     
                 // Verifica se os dados do formulário foram recebidos
                 if (!empty($formData)) {
-                    // Recupera os dados do formulário
+                    // Pega os dados do formulário
                     $id = $contactId;
                     $name = $formData['name'];
                     $email = $formData['email'];
@@ -112,7 +112,7 @@
                     return 'Dados do formulário não recebidos.';
                 }
             } else if ($requestMethod === 'DELETE') {
-                // A requisição é do tipo DELETE, então processamos o ID do contato a ser excluído
+                // Processamento do ID do contato a ser excluído
                 $contactId = $_GET['id'];
         
                 // Chama a função de deletar contato na model

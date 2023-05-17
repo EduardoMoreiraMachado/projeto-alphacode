@@ -21,7 +21,7 @@ $(document).ready(function() {
       // Opcionalmente, recarrega a página após 5 segundos
       setTimeout(function() {
         location.reload();
-      }, 5000);
+      }, 3000);
     } else {
     // Prepara os dados para envio
     var formData = {
@@ -37,12 +37,10 @@ $(document).ready(function() {
     };
       // Envia os dados do formulário para o servidor
       sendFormData(formData);
-      console.log(formData);
-      console.log(phone)
     }
   });
 
-  // função para abrir o modal
+  // Função para abrir o modal
   function openModal(title, body, closeButtonLabel, saveButtonLabel) {
     return new Promise(function(resolve, reject) {
       // Obtém a referência do modal
@@ -131,7 +129,7 @@ $(document).ready(function() {
     // Define um tempo limite de 5 segundos para a mensagem desaparecer
     setTimeout(function() {
       messageElement.hide();
-    }, 5000);
+    }, 3000);
   }
 
   // Função para enviar os dados do formulário via AJAX usando fetch
@@ -144,48 +142,44 @@ $(document).ready(function() {
       body: JSON.stringify(formData)
     })
       .then(function(response) {
-        console.log(response)
         if(response.ok) {
-          console.log('Requisição bem-sucedida:', response);
           // Exibe uma mensagem de sucesso
-          showMessage('Mensagem enviada com sucesso!', 'success');
+          showMessage('Contato cadastrado com sucesso!', 'success');
   
           // Limpa os campos do formulário
           $('#contact-form')[0].reset();
   
           // Armazena a mensagem de sucesso no localStorage
-          localStorage.setItem('successMessage', 'Mensagem enviada com sucesso!');
+          localStorage.setItem('successMessage', 'Contato cadastrado com sucesso!');
   
-          // Opcionalmente, recarrega a página após 5 segundos
+          // Recarrega a página após 3 segundos
           setTimeout(function() {
             location.reload();
-          }, 5000);
+          }, 3000);
         } else {
-          console.log('Erro na requisição:', response);
           // Exibe uma mensagem de erro
-          showMessage('Erro ao enviar mensagem.', 'error');
+          showMessage('Erro ao cadastrar contato.', 'error');
   
           // Armazena a mensagem de erro no localStorage
-          localStorage.setItem('errorMessage', 'Erro ao enviar mensagem.');
+          localStorage.setItem('errorMessage', 'Erro ao cadastrar contato.');
   
-          // Opcionalmente, recarrega a página após 5 segundos
+          // Opcionalmente, recarrega a página após 3 segundos
           setTimeout(function() {
             location.reload();
-          }, 5000);
+          }, 3000);
         }
       })
       .catch(function(error) {
-        console.log('Erro na requisição:', error);
         // Exibe uma mensagem de erro
-        showMessage('Erro ao enviar mensagem.', 'error');
+        showMessage('Erro ao cadastrar contato.', 'error');
   
         // Armazena a mensagem de erro no localStorage
-        localStorage.setItem('errorMessage', 'Erro ao enviar mensagem.');
+        localStorage.setItem('errorMessage', 'Erro ao cadastrar contato.');
   
-        // Opcionalmente, recarrega a página após 5 segundos
+        // Opcionalmente, recarrega a página após 3 segundos
         setTimeout(function() {
           location.reload();
-        }, 5000);
+        }, 3000);
     });
   }
 
@@ -202,8 +196,6 @@ $(document).ready(function() {
         }
       })
       .then(function(data) {
-        console.log(data);
-
         const table = document.getElementById('contact-table');
 
         // Limpa o conteúdo atual da tabela
@@ -218,8 +210,8 @@ $(document).ready(function() {
             <td>${contact.email}</td>
             <td>${contact.cell_phone}</td>
             <td>
-              <a href="#" class="get-contact" data-contact-id="${contact.id}"><img src="./public/imgs/editar.png" alt="Editar dados"/></a>
-              <a href="#" class="delete-contact" data-contact-id="${contact.id}"><img src="./public/imgs/excluir.png" alt="Excluir dados"/></a>
+              <a href="#" class="get-contact mx-3" data-contact-id="${contact.id}"><img src="./public/imgs/editar.png" alt="Editar dados"/></a>
+              <a href="#" class="delete-contact mx-3" data-contact-id="${contact.id}"><img src="./public/imgs/excluir.png" alt="Excluir dados"/></a>
             </td>
           `;
 
@@ -240,7 +232,6 @@ $(document).ready(function() {
         }
       })
       .catch(function(error) {
-        console.log(error);
         // Exibe uma mensagem de erro
         $('#error-message').text('Erro ao obter os contatos.').show();
       });
@@ -267,8 +258,6 @@ $(document).ready(function() {
             if (response.ok) {
               return response.json();
             } else {
-
-              console.log(response);
               throw new Error('Erro na requisição:', response);
             }
           })
@@ -334,7 +323,6 @@ $(document).ready(function() {
 
           })
           .catch(function(error) {
-            console.log(error);
             // Exibe uma mensagem de erro
             $('#error-message').text('Erro ao obter o contato.').show();
           });
@@ -348,10 +336,10 @@ $(document).ready(function() {
   // Função para atualizar um contato
   function updateContact(event) {
     event.preventDefault();
-
+  
     // Obtém o ID do contato a ser atualizado
     let contactId = $('#contact-form').data('contact-id');
-
+  
     // Validação dos campos do formulário
     var fullName = $('#full-name').val();
     var email = $('#email').val();
@@ -362,7 +350,7 @@ $(document).ready(function() {
     var checkWpp = $('#check-wpp').is(':checked');
     var checkSms = $('#check-sms').is(':checked');
     var checkEmail = $('#check-email').is(':checked');
-
+  
     // Verifica se os campos obrigatórios foram preenchidos
     if (fullName === '' || email === '' || birthDate === '' || cellPhone === '') {
       // Exibe uma mensagem de erro
@@ -381,7 +369,7 @@ $(document).ready(function() {
         enabled_sms: checkSms,
         enabled_email: checkEmail
       };
-
+  
       // Envia os dados do formulário para o servidor para atualização
       sendUpdateData(formData);
     }
@@ -398,7 +386,6 @@ function sendUpdateData(formData) {
   })
     .then(function(response) {
       if (response.ok) {
-        console.log('Requisição bem-sucedida:', response);
         // Exibe uma mensagem de sucesso
         showMessage('Dados atualizados com sucesso!', 'success');
 
@@ -408,7 +395,6 @@ function sendUpdateData(formData) {
         // Armazena a mensagem de sucesso no localStorage
         localStorage.setItem('successMessage', 'Dados atualizados com sucesso!');
       } else {
-        console.log('Erro na requisição:', response);
         // Exibe uma mensagem de erro
         showMessage('Erro ao atualizar dados.', 'error');
         // Armazena a mensagem de erro no localStorage
@@ -441,7 +427,7 @@ function sendUpdateData(formData) {
     let contactId = $(this).data('contact-id');
 
     var title = 'Excluir contato';
-    var body = 'Gostaria de exluir o contato selecionado?';
+    var body = 'Gostaria de excluir o contato selecionado?';
     var closeButtonLabel = 'Cancelar';
     var saveButtonLabel = 'Confirmar';
 
@@ -463,7 +449,6 @@ function sendUpdateData(formData) {
               if (row) {
                 row.remove();
               }
-              console.log('Contato excluído com sucesso!');
             } else {
               console.error('Erro ao excluir o contato:', response.status);
             }
