@@ -94,9 +94,8 @@
             </div>
         </form>
         <div class="border-top border-2 black-light mb-5"></div>
-
         <!-- Modal para confirmar requisições -->
-        <div class="modal" tabindex="-1">
+        <div class="modal" tabindex="-1" id="confirmation-modal">
             <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -107,13 +106,12 @@
                     <p>Modal body text goes here.</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Confirmar</button>
                 </div>
                 </div>
             </div>
         </div>
-
         <table class="table mb-5">
             <thead class="color-main">
                 <tr>

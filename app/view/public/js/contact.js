@@ -42,6 +42,59 @@ $(document).ready(function() {
     }
   });
 
+  // função para abrir o modal
+  function openModal(title, body, closeButtonLabel, saveButtonLabel) {
+    return new Promise(function(resolve, reject) {
+      // Obtém a referência do modal
+      var modal = document.getElementById('confirmation-modal');
+
+      // Atualiza os elementos do modal com os textos fornecidos
+      var modalTitle = modal.querySelector('.modal-title');
+      var modalBody = modal.querySelector('.modal-body');
+      var closeButton = modal.querySelector('.btn-secondary');
+      var saveButton = modal.querySelector('.btn-primary');
+
+      modalTitle.textContent = title;
+      modalBody.textContent = body;
+      closeButton.textContent = closeButtonLabel;
+      saveButton.textContent = saveButtonLabel;
+
+      // Função para tratar o fechamento do modal
+      var closeModal = function(action) {
+        modal.removeEventListener('hidden.bs.modal', onModalHidden);
+        resolve(action);
+      };
+
+      // Função para tratar o clique no botão de fechar
+      closeButton.addEventListener('click', function() {
+        closeModal('close');
+        // Fechar o modal ao clicar no botão de fechar
+        var bootstrapModal = bootstrap.Modal.getInstance(modal);
+        bootstrapModal.hide();
+      });
+
+      // Função para tratar o clique no botão de salvar
+      saveButton.addEventListener('click', function() {
+        closeModal('save');
+        // Fechar o modal ao clicar no botão de salvar
+        var bootstrapModal = bootstrap.Modal.getInstance(modal);
+        bootstrapModal.hide();
+      });
+
+      // Função para tratar o fechamento do modal por outros meios
+      var onModalHidden = function() {
+        closeModal(null);
+      };
+
+      // Abre o modal
+      var bootstrapModal = new bootstrap.Modal(modal);
+      bootstrapModal.show();
+
+      // Adiciona o tratamento para o fechamento do modal
+      modal.addEventListener('hidden.bs.modal', onModalHidden);
+    });
+  }
+
   // Função para verificar e exibir a mensagem na URL
   function checkAndShowMessage() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -198,86 +251,98 @@ $(document).ready(function() {
     // Obtém o ID do contato a ser excluído
     let contactId = $(this).data('contact-id');
 
-    console.log(contactId);
+    var title = 'Atualizar contato';
+    var body = 'Gostaria de atualizar o contato selecionado?';
+    var closeButtonLabel = 'Cancelar';
+    var saveButtonLabel = 'Confirmar';
 
-    fetch(`http://localhost/projeto-alphacode/app/controller/contactController.php/?id=${contactId}`, {
-      method: 'GET'
-    })
-      .then(function(response) {
-        if (response.ok) {
-          return response.json();
-        } else {
+    openModal(title, body, closeButtonLabel, saveButtonLabel).then(function(action) {
+      if (action === 'close') {
+        window.location.reload();
+      } else if (action === 'save') {
+        fetch(`http://localhost/projeto-alphacode/app/controller/contactController.php/?id=${contactId}`, {
+          method: 'GET'
+        })
+          .then(function(response) {
+            if (response.ok) {
+              return response.json();
+            } else {
 
-          console.log(response);
-          throw new Error('Erro na requisição:', response);
-        }
-      })
-      .then(function(data) {
-        let fullName = document.getElementById('full-name');
-        let email = document.getElementById('email');
-        let phone = document.getElementById('phone');
-        let birthDate = document.getElementById('birth-date');
-        let work = document.getElementById('work');
-        let cellPhone = document.getElementById('cell-phone');
-        let checkWpp = document.getElementById('check-wpp');
-        let checkSms = document.getElementById('check-sms');
-        let checkEmail = document.getElementById('check-email');
+              console.log(response);
+              throw new Error('Erro na requisição:', response);
+            }
+          })
+          .then(function(data) {
+            let fullName = document.getElementById('full-name');
+            let email = document.getElementById('email');
+            let phone = document.getElementById('phone');
+            let birthDate = document.getElementById('birth-date');
+            let work = document.getElementById('work');
+            let cellPhone = document.getElementById('cell-phone');
+            let checkWpp = document.getElementById('check-wpp');
+            let checkSms = document.getElementById('check-sms');
+            let checkEmail = document.getElementById('check-email');
 
-        let pageName = document.getElementById('page-name')
-        let button = document.getElementById('blue');
+            let pageName = document.getElementById('page-name')
+            let button = document.getElementById('blue');
 
-        // Limpa o conteúdo atual dos inputs
-        fullName.value = '';
-        email.value = '';
-        phone.value = '';
-        birthDate.value = '';
-        work.value = '';
-        cellPhone.value = '';
-        checkWpp.checked = false;
-        checkSms.checked = false;
-        checkEmail.checked = false;
+            // Limpa o conteúdo atual dos inputs
+            fullName.value = '';
+            email.value = '';
+            phone.value = '';
+            birthDate.value = '';
+            work.value = '';
+            cellPhone.value = '';
+            checkWpp.checked = false;
+            checkSms.checked = false;
+            checkEmail.checked = false;
 
-        button.textContent = 'Atualizar contato';
-        button.removeEventListener('click', updateContact); // Remove o listener anterior para evitar duplicação
-        button.addEventListener('click', updateContact);
+            button.textContent = 'Atualizar contato';
+            button.removeEventListener('click', updateContact); // Remove o listener anterior para evitar duplicação
+            button.addEventListener('click', updateContact);
 
-        // Cria as linhas da tabela com os dados dos contatos
-        data.forEach(function(contact) {
+            // Cria as linhas da tabela com os dados dos contatos
+            data.forEach(function(contact) {
 
-          let checkedWpp = true;
-          let checkedSms = true;
-          let checkedEmail = true;
+              let checkedWpp = true;
+              let checkedSms = true;
+              let checkedEmail = true;
 
-          if(contact.enabled_wpp == 0) {
-            checkedWpp = false;
-          }
-          if(contact.enabled_sms == 0) {
-            checkedSms = false;
-          }
-          if(contact.enabled_email == 0) {
-            checkedEmail = false;
-          }
+              if(contact.enabled_wpp == 0) {
+                checkedWpp = false;
+              }
+              if(contact.enabled_sms == 0) {
+                checkedSms = false;
+              }
+              if(contact.enabled_email == 0) {
+                checkedEmail = false;
+              }
 
-          fullName.value = contact.name;
-          email.value = contact.email;
-          phone.value = contact.phone;
-          birthDate.value = contact.birth_date;
-          work.value = contact.work;
-          cellPhone.value = contact.cell_phone;
-          checkWpp.checked = checkedWpp;
-          checkSms.checked = checkedSms;
-          checkEmail.checked = checkedEmail;
-          
-          pageName.textContent = `Editar contato ${contact.name}`;
-          $('#contact-form').attr('data-contact-id', contact.id);
-        });
+              fullName.value = contact.name;
+              email.value = contact.email;
+              phone.value = contact.phone;
+              birthDate.value = contact.birth_date;
+              work.value = contact.work;
+              cellPhone.value = contact.cell_phone;
+              checkWpp.checked = checkedWpp;
+              checkSms.checked = checkedSms;
+              checkEmail.checked = checkedEmail;
+              
+              pageName.textContent = `Editar contato ${contact.name}`;
+              $('#contact-form').attr('data-contact-id', contact.id);
+            });
 
-      })
-      .catch(function(error) {
-        console.log(error);
-        // Exibe uma mensagem de erro
-        $('#error-message').text('Erro ao obter o contato.').show();
-      });
+          })
+          .catch(function(error) {
+            console.log(error);
+            // Exibe uma mensagem de erro
+            $('#error-message').text('Erro ao obter o contato.').show();
+          });
+      } else {
+        window.location.reload();
+      }
+    });
+
   }
 
   // Função para atualizar um contato
@@ -375,28 +440,43 @@ function sendUpdateData(formData) {
     // Obtém o ID do contato a ser excluído
     let contactId = $(this).data('contact-id');
 
-    // Realiza a solicitação de exclusão à controller (usando AJAX, por exemplo)
-    fetch(`http://localhost/projeto-alphacode/app/controller/contactController.php/?id=${contactId}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(function(response) {
-        if (response.ok) {
-          // Se a exclusão for bem-sucedida, remova a linha da tabela
-          var row = $(event.target).closest('tr');
-          if (row) {
-            row.remove();
+    var title = 'Excluir contato';
+    var body = 'Gostaria de exluir o contato selecionado?';
+    var closeButtonLabel = 'Cancelar';
+    var saveButtonLabel = 'Confirmar';
+
+    openModal(title, body, closeButtonLabel, saveButtonLabel).then(function(action) {
+      if (action === 'close') {
+        window.location.reload();
+      } else if (action === 'save') {
+        // Realiza a solicitação de exclusão à controller (usando AJAX, por exemplo)
+        fetch(`http://localhost/projeto-alphacode/app/controller/contactController.php/?id=${contactId}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
           }
-          console.log('Contato excluído com sucesso!');
-        } else {
-          console.error('Erro ao excluir o contato:', response.status);
-        }
-      })
-      .catch(function(error) {
-        console.error('Erro ao excluir o contato:', error);
-      });
+        })
+          .then(function(response) {
+            if (response.ok) {
+              // Se a exclusão for bem-sucedida, remova a linha da tabela
+              var row = $(event.target).closest('tr');
+              if (row) {
+                row.remove();
+              }
+              console.log('Contato excluído com sucesso!');
+            } else {
+              console.error('Erro ao excluir o contato:', response.status);
+            }
+          })
+          .catch(function(error) {
+            console.error('Erro ao excluir o contato:', error);
+          });
+      } else {
+        window.location.reload();
+
+      }
+    });
+
   }
 
   // Atualiza a tabela de contatos ao carregar a página
