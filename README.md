@@ -16,7 +16,7 @@ A aplicação foi feita seguindo a arquitetura MVC (model, view e controller), c
 ## Pré-requisitos
 
 - Possuir os serviços MySQL para a criação do banco de dados e conexão com a aplicação.
-- Possuir um servidor Apache para a aplicação ser utilizada de forma local.
+- Possuir um servidor Apache para a aplicação ser utilizada de forma local (é recomendado o uso da plataforma xampp).
 
 ## Instalação
 
@@ -38,7 +38,7 @@ Download das pastas de forma compactada:
     - $dbUsername (nome do usuário)
     - $dbPassword (senha)
     - $dbName (nome do banco de dados)
-- Após a criação do banco de dados com a tabela e configuração de conexão, executar o arquivo "index.php" presente na pasta "view", dentri da raíz do projeto.
+- Após a criação do banco de dados com a tabela e configuração de conexão, executar o arquivo "index.php" presente na pasta "view", dentro da raíz do projeto
 
 ## Obervações
 
