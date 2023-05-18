@@ -16,6 +16,7 @@ A aplicação foi feita seguindo a arquitetura MVC (model, view e controller), c
 ## Pré-requisitos
 
 - Possuir os serviços MySQL para a criação do banco de dados e conexão com a aplicação.
+- Possuir os serviços PHP.
 - Possuir um servidor Apache para a aplicação ser utilizada de forma local (é recomendado o uso da plataforma xampp).
 
 ## Instalação
