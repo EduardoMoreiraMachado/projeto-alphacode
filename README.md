@@ -29,6 +29,7 @@ Para extrair os arquivos do projeto através do comando Git:
 Download das pastas de forma compactada:
 
 1: Clicar no botão "<> Code ▾".
+
 2: Clicar na opção "Download ZIP".
 
 ## Uso
