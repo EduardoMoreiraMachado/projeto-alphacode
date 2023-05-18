@@ -43,7 +43,7 @@ Download das pastas de forma compactada:
 
 ## Obervações
 
-- Caso não esteja realizando a conexão com o servidor apache através do "localhost", talvez seja necessário mudar o caminho dos fetchs no arquivo "contact.js" presente na pasta "js", contido na pasta "public" da pasta "view" na raíz do projeto para fazer o contato com a controller com o ip desejado. Exemplo:
+- Caso não esteja realizando a conexão com o servidor apache através do "localhost", talvez seja necessário mudar o caminho dos fetchs no arquivo "contact.js" presente na pasta "js", contido na pasta "public" da pasta "view" na raíz do projeto para fazer o contato com a controller por meio do IP desejado. Exemplo:
     - fetch(`http://SEU_ENDEREÇO_IP/projeto-alphacode/app/controller/contactController.php/?id=${formData.id}`, {
         method: 'PUT',
         headers: {
