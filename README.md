@@ -33,17 +33,17 @@ Download das pastas de forma compactada:
 
 ## Uso
 
-- Dentro da pasta "database" presente na raíz do projeto, há o arquivo "script.sql" que contém os códigos MySQL para a criação do banco de dados.
-- Dentro da pasta "app" presente na raíz do projeto, há a pasta "config" e nela, o arquivo "database.php", onde são inseridas as configurações para a conexão do banco de dados, respectivamente:
+- Dentro da pasta `database` presente na raíz do projeto, há o arquivo `script.sql` que contém os códigos MySQL para a criação do banco de dados.
+- Dentro da pasta `app` presente na raíz do projeto, há a pasta `config` e nela, o arquivo `database.php`, onde são inseridas as configurações para a conexão do banco de dados, respectivamente:
     - $dbHost (host) 
     - $dbUsername (nome do usuário)
     - $dbPassword (senha)
     - $dbName (nome do banco de dados)
-- Após a criação do banco de dados com a tabela e configuração de conexão, executar o arquivo "index.php" presente na pasta "view", dentro da raíz do projeto
+- Após a criação do banco de dados com a tabela e configuração de conexão, executar o arquivo `index.php` presente na pasta `view`, dentro da raíz do projeto com o endereço "http://localhost/projeto-alphacode/app/view/index.php" para o navegador.
 
 ## Obervações
 
-- Caso não esteja realizando a conexão com o servidor apache através do "localhost", talvez seja necessário mudar o caminho dos fetchs no arquivo "contact.js" presente na pasta "js", contido na pasta "public" da pasta "view" na raíz do projeto para fazer o contato com a controller por meio do IP desejado. Exemplo:
+- Caso não esteja realizando a conexão com o servidor apache através do `localhost`, talvez seja necessário mudar o caminho dos fetchs no arquivo `contact.js` presente na pasta `js`, contido na pasta `public` da pasta `view` na raíz do projeto para fazer o contato com a controller por meio do IP desejado. Exemplo:
     - fetch(`http://SEU_ENDEREÇO_IP/projeto-alphacode/app/controller/contactController.php/?id=${formData.id}`, {
         method: 'PUT',
         headers: {
